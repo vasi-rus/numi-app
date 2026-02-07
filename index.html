@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Numi - Kids Math Games</title>
+  <meta name="description" content="Fun math games for kids ages 4-10. Addition, subtraction, multiplication, fractions and more. No ads, no data collection, 100% free.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #FFF9E6;
+      color: #333;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #9B7ED9 0%, #B89AE8 50%, #D4C4F0 100%);
+      padding: 60px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -40px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero-logo {
+      margin-bottom: 20px;
+    }
+
+    .hero-logo img {
+      width: 120px;
+      height: 120px;
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .hero-tagline {
+      color: rgba(255,255,255,0.9);
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    .hero-character {
+      margin-top: 16px;
+    }
+
+    .hero-character img {
+      width: 160px;
+      height: auto;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+    }
+
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    /* Game Modes Grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .game-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .game-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .game-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .game-card p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    /* Features Section */
+    .features-section {
+      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9E6 100%);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: #777;
+    }
+
+    /* Stats Section */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: #9B7ED9;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #888;
+      font-weight: 500;
+    }
+
+    /* Ages Section */
+    .ages-section {
+      background: #fff;
+    }
+
+    .ages-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .age-bubble {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9B7ED9 0%, #B89AE8 100%);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(155,126,217,0.3);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #9B7ED9 0%, #B89AE8 100%);
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #FFD93D;
+      color: #333;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 30px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: #bbb;
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: #9B7ED9;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      margin-top: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 32px; }
+      .hero-tagline { font-size: 17px; }
+      .section-title { font-size: 24px; }
+      .stats { gap: 32px; }
+      .stat-number { font-size: 28px; }
+      .hero-character img { width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-logo"><img src="numi-logo.png" alt="Numi Logo"></div>
+      <h1>Numi</h1>
+      <p class="hero-tagline">Kids Math Games</p>
+      <div class="hero-badges">
+        <span class="badge">Ages 4-10</span>
+        <span class="badge">100% Free</span>
+        <span class="badge">No Ads</span>
+        <span class="badge">Offline</span>
+      </div>
+      <div class="hero-character">
+        <img src="numi-character.png" alt="Numi Character">
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="container">
+    <div class="stats">
+      <div>
+        <div class="stat-number">1,100+</div>
+        <div class="stat-label">Levels</div>
+      </div>
+      <div>
+        <div class="stat-number">8</div>
+        <div class="stat-label">Game Modes</div>
+      </div>
+      <div>
+        <div class="stat-number">4</div>
+        <div class="stat-label">Bonus Games</div>
+      </div>
+      <div>
+        <div class="stat-number">7</div>
+        <div class="stat-label">Age Groups</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Modes -->
+  <div class="section">
+    <div class="container">
+      <h2 class="section-title">Game Modes</h2>
+      <p class="section-subtitle">From counting basics to fractions and beyond</p>
+      <div class="games-grid">
+        <div class="game-card">
+          <div class="game-icon">&#x2795;</div>
+          <h3>Addition</h3>
+          <p>Build the foundation for all math skills</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x2796;</div>
+          <h3>Subtraction</h3>
+          <p>Practice taking away and finding differences</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x2716;</div>
+          <h3>Multiplication</h3>
+          <p>Discover how groups of numbers work</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x2797;</div>
+          <h3>Division</h3>
+          <p>Split numbers into equal groups</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x00BD;</div>
+          <h3>Fractions</h3>
+          <p>Understand parts of a whole</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x271E;</div>
+          <h3>Math Cross</h3>
+          <p>Crossword-style math puzzles</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x1F5BC;</div>
+          <h3>Picture Math</h3>
+          <p>Find hidden numbers in picture equations</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x2276;</div>
+          <h3>Number Compare</h3>
+          <p>Greater than, less than, and equal</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bonus Games -->
+  <div class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="section-title">Bonus Activities</h2>
+      <p class="section-subtitle">Fun challenges to unlock as you progress</p>
+      <div class="games-grid">
+        <div class="game-card">
+          <div class="game-icon">&#x2160;</div>
+          <h3>Roman Numerals</h3>
+          <p>Learn I, V, X, L, C, D, M</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x1F570;</div>
+          <h3>Time</h3>
+          <p>Read analog and digital clocks</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x1F523;</div>
+          <h3>Patterns</h3>
+          <p>Complete shape and number sequences</p>
+        </div>
+        <div class="game-card">
+          <div class="game-icon">&#x1F0CF;</div>
+          <h3>Memory Match</h3>
+          <p>Find matching pairs of math cards</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="section features-section">
+    <div class="container">
+      <h2 class="section-title">Built for Kids</h2>
+      <p class="section-subtitle">Safe, fun, and designed with care</p>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">&#x1F6E1;</div>
+          <h3>100% Safe</h3>
+          <p>No data collection, no accounts, no tracking</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#x1F4F5;</div>
+          <h3>Works Offline</h3>
+          <p>No internet needed, play anywhere</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#x1F6AB;</div>
+          <h3>No Ads</h3>
+          <p>Zero ads, zero in-app purchases</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#x2B50;</div>
+          <h3>Star Rewards</h3>
+          <p>3-star rating system to encourage mastery</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#x1F4C8;</div>
+          <h3>Adaptive Difficulty</h3>
+          <p>Grows with your child's abilities</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#x1F476;</div>
+          <h3>Gentle Feedback</h3>
+          <p>Encouraging, never harsh or stressful</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ages -->
+  <div class="section ages-section">
+    <div class="container">
+      <h2 class="section-title">Ages 4 to 10</h2>
+      <p class="section-subtitle">Adaptive content for every stage of learning</p>
+      <div class="ages-bar">
+        <div class="age-bubble">4</div>
+        <div class="age-bubble">5</div>
+        <div class="age-bubble">6</div>
+        <div class="age-bubble">7</div>
+        <div class="age-bubble">8</div>
+        <div class="age-bubble">9</div>
+        <div class="age-bubble">10</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to make math fun?</h2>
+    <p>Download Numi and let your child start learning through play.</p>
+    <a href="#" class="cta-button">&#x25B6; Get Numi on Google Play</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div>Made with care for young learners</div>
+    <div class="footer-links">
+      <a href="https://vasi-rus.github.io/numi-privacy/">Privacy Policy</a>
+    </div>
+  </div>
+
+</body>
+</html>
