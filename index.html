@@ -29,7 +29,6 @@
       overflow: hidden;
     }
 
-    /* Floating decorative circles */
     .hero .circle {
       position: absolute;
       border-radius: 50%;
@@ -40,7 +39,6 @@
     .hero .circle-3 { width: 120px; height: 120px; top: 40%; left: 8%; background: rgba(255,217,61,0.1); }
     .hero .circle-4 { width: 80px; height: 80px; top: 20%; right: 12%; background: rgba(255,217,61,0.08); }
 
-    /* Wavy bottom edge */
     .hero-wave {
       position: absolute;
       bottom: -2px;
@@ -211,103 +209,221 @@
       font-weight: 500;
     }
 
-    /* ===== GAME MODES ===== */
+    /* ===== TOY BLOCK GAME CARDS ===== */
     .games-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
-    .game-card {
-      background: #fff;
+    .toy-card {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .toy-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* 3D shadow layer */
+    .toy-shadow {
+      position: absolute;
+      bottom: -5px;
+      left: 4px;
+      right: 4px;
+      height: calc(100% - 4px);
       border-radius: 20px;
-      padding: 28px 20px;
-      text-align: center;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      border: 2px solid transparent;
     }
 
-    .game-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 32px rgba(155,126,217,0.15);
-      border-color: #E8DFFB;
+    /* Main card surface */
+    .toy-face {
+      position: relative;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow: hidden;
+      min-height: 88px;
     }
 
-    .game-icon-wrap {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
+    /* Decorative circles inside card */
+    .toy-face::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .toy-face::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 30%;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Emoji bubble */
+    .toy-emoji {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 14px;
       font-size: 26px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .game-icon-wrap.purple { background: linear-gradient(135deg, #EDE7F6, #D1C4E9); }
-    .game-icon-wrap.blue   { background: linear-gradient(135deg, #E3F2FD, #BBDEFB); }
-    .game-icon-wrap.green  { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); }
-    .game-icon-wrap.orange { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); }
-    .game-icon-wrap.pink   { background: linear-gradient(135deg, #FCE4EC, #F8BBD0); }
-    .game-icon-wrap.teal   { background: linear-gradient(135deg, #E0F2F1, #B2DFDB); }
-    .game-icon-wrap.yellow { background: linear-gradient(135deg, #FFFDE7, #FFF9C4); }
-    .game-icon-wrap.red    { background: linear-gradient(135deg, #FFEBEE, #FFCDD2); }
+    /* Card text */
+    .toy-info {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
 
-    .game-card h3 {
-      font-size: 15px;
+    .toy-name {
+      font-size: 17px;
       font-weight: 800;
-      color: #333;
-      margin-bottom: 4px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      margin-bottom: 2px;
     }
 
-    .game-card p {
+    .toy-desc {
       font-size: 13px;
-      color: #aaa;
-      line-height: 1.4;
-      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      line-height: 1.3;
     }
 
-    /* ===== BONUS SECTION ===== */
-    .bonus-section {
-      background: #fff;
+    /* Play arrow */
+    .toy-play {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      font-weight: 800;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
     }
+
+    /* ===== BONUS CARDS ===== */
+    .bonus-section { background: #fff; }
 
     .bonus-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
     .bonus-card {
-      background: linear-gradient(135deg, #FFF9E6, #FFF3D4);
-      border-radius: 20px;
-      padding: 28px 20px;
-      text-align: center;
-      border: 2px solid #FFE082;
+      position: relative;
+      cursor: pointer;
       transition: transform 0.25s ease;
     }
 
     .bonus-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-4px);
     }
 
-    .bonus-icon {
-      font-size: 36px;
-      margin-bottom: 12px;
+    .bonus-shadow {
+      position: absolute;
+      bottom: -5px;
+      left: 4px;
+      right: 4px;
+      height: calc(100% - 4px);
+      border-radius: 20px;
     }
 
-    .bonus-card h3 {
-      font-size: 15px;
+    .bonus-face {
+      position: relative;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow: hidden;
+      min-height: 88px;
+    }
+
+    .bonus-face::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .bonus-emoji {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bonus-info {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bonus-name {
+      font-size: 17px;
       font-weight: 800;
-      color: #333;
-      margin-bottom: 4px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      margin-bottom: 2px;
     }
 
-    .bonus-card p {
+    .bonus-desc {
       font-size: 13px;
-      color: #aaa;
-      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    /* Bonus star lock badge */
+    .bonus-badge {
+      position: absolute;
+      top: -6px;
+      right: 12px;
+      background: #FFD93D;
+      color: #333;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 10px;
+      z-index: 3;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     /* ===== FEATURES ===== */
@@ -490,25 +606,19 @@
     }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .games-grid { grid-template-columns: repeat(2, 1fr); }
-      .bonus-grid { grid-template-columns: repeat(2, 1fr); }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .hero { padding: 50px 20px 80px; }
       .hero h1 { font-size: 36px; }
       .hero-tagline { font-size: 18px; }
       .hero-logo img { width: 100px; height: 100px; }
       .hero-character img { width: 140px; }
-      .stats-bar { flex-direction: row; flex-wrap: wrap; padding: 24px 16px; gap: 12px; margin: -30px 16px 0; }
+      .stats-bar { padding: 24px 16px; gap: 12px; margin: -30px 16px 0; }
       .stat { min-width: 70px; }
       .stat-number { font-size: 28px; }
       .section { padding: 50px 0; }
       .section-title { font-size: 26px; }
-      .games-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .bonus-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .games-grid { grid-template-columns: 1fr; gap: 14px; }
+      .bonus-grid { grid-template-columns: 1fr; gap: 14px; }
       .features-grid { grid-template-columns: 1fr; }
       .cta-section h2 { font-size: 26px; }
       .cta-button { font-size: 16px; padding: 14px 32px; }
@@ -567,84 +677,182 @@
     </div>
   </div>
 
-  <!-- Game Modes -->
+  <!-- Game Modes - Toy Block Cards -->
   <div class="section">
     <div class="container">
       <div class="section-label">Core Games</div>
       <h2 class="section-title">8 Ways to Learn Math</h2>
       <p class="section-subtitle">From counting basics to fractions and beyond</p>
       <div class="games-grid">
-        <div class="game-card">
-          <div class="game-icon-wrap purple">&#x2795;</div>
-          <h3>Addition</h3>
-          <p>Build the foundation for all math skills</p>
+
+        <!-- Addition -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #166534;"></div>
+          <div class="toy-face" style="background: #4ADE80;">
+            <div class="toy-emoji" style="background: #DCFCE7;">&#x2795;</div>
+            <div class="toy-info">
+              <div class="toy-name">Addition</div>
+              <div class="toy-desc">Build the foundation for all math skills</div>
+            </div>
+            <div class="toy-play" style="background: #166534;">&#x2192;</div>
+          </div>
         </div>
-        <div class="game-card">
-          <div class="game-icon-wrap blue">&#x2796;</div>
-          <h3>Subtraction</h3>
-          <p>Practice taking away and finding differences</p>
+
+        <!-- Subtraction -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #991B1B;"></div>
+          <div class="toy-face" style="background: #F87171;">
+            <div class="toy-emoji" style="background: #FEE2E2;">&#x2796;</div>
+            <div class="toy-info">
+              <div class="toy-name">Subtraction</div>
+              <div class="toy-desc">Practice taking away and finding differences</div>
+            </div>
+            <div class="toy-play" style="background: #991B1B;">&#x2192;</div>
+          </div>
         </div>
-        <div class="game-card">
-          <div class="game-icon-wrap green">&#x2716;</div>
-          <h3>Multiplication</h3>
-          <p>Discover how groups of numbers work</p>
+
+        <!-- Multiplication -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #1E40AF;"></div>
+          <div class="toy-face" style="background: #60A5FA;">
+            <div class="toy-emoji" style="background: #DBEAFE;">&#x2716;&#xFE0F;</div>
+            <div class="toy-info">
+              <div class="toy-name">Multiply</div>
+              <div class="toy-desc">Discover how groups of numbers work</div>
+            </div>
+            <div class="toy-play" style="background: #1E40AF;">&#x2192;</div>
+          </div>
         </div>
-        <div class="game-card">
-          <div class="game-icon-wrap orange">&#x2797;</div>
-          <h3>Division</h3>
-          <p>Split numbers into equal groups</p>
+
+        <!-- Division -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #B45309;"></div>
+          <div class="toy-face" style="background: #FBBF24;">
+            <div class="toy-emoji" style="background: #FEF3C7;">&#x2797;</div>
+            <div class="toy-info">
+              <div class="toy-name">Divide</div>
+              <div class="toy-desc">Split numbers into equal groups</div>
+            </div>
+            <div class="toy-play" style="background: #B45309;">&#x2192;</div>
+          </div>
         </div>
-        <div class="game-card">
-          <div class="game-icon-wrap pink">&#xBD;</div>
-          <h3>Fractions</h3>
-          <p>Understand parts of a whole</p>
+
+        <!-- Fractions -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #A21CAF;"></div>
+          <div class="toy-face" style="background: #E879F9;">
+            <div class="toy-emoji" style="background: #FAE8FF;">&#x1F355;</div>
+            <div class="toy-info">
+              <div class="toy-name">Fractions</div>
+              <div class="toy-desc">Understand parts of a whole</div>
+            </div>
+            <div class="toy-play" style="background: #A21CAF;">&#x2192;</div>
+          </div>
         </div>
-        <div class="game-card">
-          <div class="game-icon-wrap teal">&#x271E;</div>
-          <h3>Math Cross</h3>
-          <p>Crossword-style math puzzles</p>
+
+        <!-- Math Cross -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #5B21B6;"></div>
+          <div class="toy-face" style="background: #A78BFA;">
+            <div class="toy-emoji" style="background: #EDE9FE;">&#x1F9E9;</div>
+            <div class="toy-info">
+              <div class="toy-name">Math Cross</div>
+              <div class="toy-desc">Crossword-style math puzzles</div>
+            </div>
+            <div class="toy-play" style="background: #5B21B6;">&#x2192;</div>
+          </div>
         </div>
-        <div class="game-card">
-          <div class="game-icon-wrap yellow">&#x1F5BC;</div>
-          <h3>Picture Math</h3>
-          <p>Find hidden numbers in equations</p>
+
+        <!-- Picture Math -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #C2410C;"></div>
+          <div class="toy-face" style="background: #FB923C;">
+            <div class="toy-emoji" style="background: #FFEDD5;">&#x1F575;&#xFE0F;</div>
+            <div class="toy-info">
+              <div class="toy-name">Picture Math</div>
+              <div class="toy-desc">Find hidden numbers in equations</div>
+            </div>
+            <div class="toy-play" style="background: #C2410C;">&#x2192;</div>
+          </div>
         </div>
-        <div class="game-card">
-          <div class="game-icon-wrap red">&#x2276;</div>
-          <h3>Number Compare</h3>
-          <p>Greater than, less than, equal</p>
+
+        <!-- Number Compare -->
+        <div class="toy-card">
+          <div class="toy-shadow" style="background: #0E7490;"></div>
+          <div class="toy-face" style="background: #22D3EE;">
+            <div class="toy-emoji" style="background: #CFFAFE;">&#x2696;&#xFE0F;</div>
+            <div class="toy-info">
+              <div class="toy-name">Compare</div>
+              <div class="toy-desc">Greater than, less than, and equal</div>
+            </div>
+            <div class="toy-play" style="background: #0E7490;">&#x2192;</div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
 
-  <!-- Bonus Games -->
+  <!-- Bonus Games - Toy Block Cards -->
   <div class="section bonus-section">
     <div class="container">
       <div class="section-label">Unlock as you play</div>
       <h2 class="section-title">Bonus Activities</h2>
-      <p class="section-subtitle">Fun challenges that reward progress</p>
+      <p class="section-subtitle">Fun challenges that reward your progress</p>
       <div class="bonus-grid">
+
+        <!-- Roman Numerals -->
         <div class="bonus-card">
-          <div class="bonus-icon">&#x1F3DB;</div>
-          <h3>Roman Numerals</h3>
-          <p>Learn I, V, X, L, C, D, M</p>
+          <span class="bonus-badge">&#x2B50; Unlock</span>
+          <div class="bonus-shadow" style="background: #1565C0;"></div>
+          <div class="bonus-face" style="background: #42A5F5;">
+            <div class="bonus-emoji" style="background: #E3F2FD;">&#x1F3DB;</div>
+            <div class="bonus-info">
+              <div class="bonus-name">Roman Numerals</div>
+              <div class="bonus-desc">Learn I, V, X, L, C, D, M</div>
+            </div>
+          </div>
         </div>
+
+        <!-- Time -->
         <div class="bonus-card">
-          <div class="bonus-icon">&#x1F570;</div>
-          <h3>Tell Time</h3>
-          <p>Read analog &amp; digital clocks</p>
+          <span class="bonus-badge">&#x2B50; Unlock</span>
+          <div class="bonus-shadow" style="background: #0D7377;"></div>
+          <div class="bonus-face" style="background: #14B8A6;">
+            <div class="bonus-emoji" style="background: #E0F2F1;">&#x1F550;</div>
+            <div class="bonus-info">
+              <div class="bonus-name">Tell Time</div>
+              <div class="bonus-desc">Read analog &amp; digital clocks</div>
+            </div>
+          </div>
         </div>
+
+        <!-- Patterns -->
         <div class="bonus-card">
-          <div class="bonus-icon">&#x1F52E;</div>
-          <h3>Patterns</h3>
-          <p>Complete shape &amp; number sequences</p>
+          <span class="bonus-badge">&#x2B50; Unlock</span>
+          <div class="bonus-shadow" style="background: #6D28D9;"></div>
+          <div class="bonus-face" style="background: #8B5CF6;">
+            <div class="bonus-emoji" style="background: #EDE9FE;">&#x2728;</div>
+            <div class="bonus-info">
+              <div class="bonus-name">Patterns</div>
+              <div class="bonus-desc">Complete shape &amp; number sequences</div>
+            </div>
+          </div>
         </div>
+
+        <!-- Memory Match -->
         <div class="bonus-card">
-          <div class="bonus-icon">&#x1F0CF;</div>
-          <h3>Memory Match</h3>
-          <p>Find matching math card pairs</p>
+          <span class="bonus-badge">&#x2B50; Unlock</span>
+          <div class="bonus-shadow" style="background: #92400E;"></div>
+          <div class="bonus-face" style="background: #F59E0B;">
+            <div class="bonus-emoji" style="background: #FEF3C7;">&#x1F9E0;</div>
+            <div class="bonus-info">
+              <div class="bonus-name">Memory Match</div>
+              <div class="bonus-desc">Find matching math card pairs</div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -664,7 +872,7 @@
         <div class="feature-card">
           <div class="feature-emoji">&#x1F4F5;</div>
           <h3>Works Offline</h3>
-          <p>No internet needed — play anywhere, anytime</p>
+          <p>No internet needed &mdash; play anywhere, anytime</p>
         </div>
         <div class="feature-card">
           <div class="feature-emoji">&#x1F6AB;</div>
