@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Numi - Kids Math Games</title>
   <meta name="description" content="Fun math games for kids ages 4-10. Addition, subtraction, multiplication, fractions and more. No ads, no data collection, 100% free.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #FFF9E6;
       color: #333;
       line-height: 1.7;
@@ -17,309 +20,499 @@
       overflow-x: hidden;
     }
 
-    /* Hero Section */
+    /* ===== HERO ===== */
     .hero {
-      background: linear-gradient(135deg, #9B7ED9 0%, #B89AE8 50%, #D4C4F0 100%);
-      padding: 60px 24px 80px;
+      background: linear-gradient(160deg, #7B5CBF 0%, #9B7ED9 30%, #B89AE8 60%, #C9AFF0 100%);
+      padding: 70px 24px 100px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    /* Floating decorative circles */
+    .hero .circle {
       position: absolute;
-      top: -80px;
-      right: -80px;
-      width: 300px;
-      height: 300px;
+      border-radius: 50%;
       background: rgba(255,255,255,0.06);
-      border-radius: 50%;
     }
+    .hero .circle-1 { width: 400px; height: 400px; top: -150px; right: -100px; }
+    .hero .circle-2 { width: 250px; height: 250px; bottom: -80px; left: -60px; }
+    .hero .circle-3 { width: 120px; height: 120px; top: 40%; left: 8%; background: rgba(255,217,61,0.1); }
+    .hero .circle-4 { width: 80px; height: 80px; top: 20%; right: 12%; background: rgba(255,217,61,0.08); }
 
-    .hero::after {
-      content: '';
+    /* Wavy bottom edge */
+    .hero-wave {
       position: absolute;
-      bottom: -60px;
-      left: -40px;
-      width: 200px;
-      height: 200px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 50%;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+    }
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: 60px;
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto;
     }
 
     .hero-logo {
       margin-bottom: 20px;
+      animation: floatIn 0.8s ease-out;
     }
 
     .hero-logo img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.2));
     }
 
     .hero h1 {
       color: #fff;
-      font-size: 42px;
-      font-weight: 800;
+      font-size: 48px;
+      font-weight: 900;
       letter-spacing: -1px;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.1);
     }
 
     .hero-tagline {
-      color: rgba(255,255,255,0.9);
-      font-size: 20px;
-      font-weight: 500;
-      margin-bottom: 24px;
+      color: rgba(255,255,255,0.92);
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 28px;
     }
 
     .hero-badges {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
 
     .badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.18);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.15);
     }
 
+    .badge-icon { font-size: 16px; }
+
     .hero-character {
-      margin-top: 16px;
+      margin-top: 8px;
+      animation: bounce 3s ease-in-out infinite;
     }
 
     .hero-character img {
-      width: 160px;
+      width: 180px;
       height: auto;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.18));
     }
 
-    /* Container */
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== STATS ===== */
+    .stats-bar {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      max-width: 700px;
+      margin: -40px auto 0;
+      position: relative;
+      z-index: 2;
+      padding: 32px 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .stat {
+      text-align: center;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #9B7ED9, #7B5CBF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #999;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== CONTAINER ===== */
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* Section */
+    /* ===== SECTIONS ===== */
     .section {
-      padding: 60px 0;
+      padding: 70px 0;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #9B7ED9;
+      margin-bottom: 8px;
     }
 
     .section-title {
       text-align: center;
-      font-size: 28px;
-      font-weight: 800;
+      font-size: 32px;
+      font-weight: 900;
       color: #333;
       margin-bottom: 8px;
     }
 
     .section-subtitle {
       text-align: center;
-      font-size: 16px;
-      color: #888;
-      margin-bottom: 40px;
+      font-size: 17px;
+      color: #999;
+      margin-bottom: 48px;
+      font-weight: 500;
     }
 
-    /* Game Modes Grid */
+    /* ===== GAME MODES ===== */
     .games-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
 
     .game-card {
       background: #fff;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      transition: transform 0.2s;
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 2px solid transparent;
     }
 
     .game-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(155,126,217,0.15);
+      border-color: #E8DFFB;
     }
 
-    .game-icon {
-      font-size: 32px;
-      margin-bottom: 8px;
+    .game-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      font-size: 26px;
     }
+
+    .game-icon-wrap.purple { background: linear-gradient(135deg, #EDE7F6, #D1C4E9); }
+    .game-icon-wrap.blue   { background: linear-gradient(135deg, #E3F2FD, #BBDEFB); }
+    .game-icon-wrap.green  { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); }
+    .game-icon-wrap.orange { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); }
+    .game-icon-wrap.pink   { background: linear-gradient(135deg, #FCE4EC, #F8BBD0); }
+    .game-icon-wrap.teal   { background: linear-gradient(135deg, #E0F2F1, #B2DFDB); }
+    .game-icon-wrap.yellow { background: linear-gradient(135deg, #FFFDE7, #FFF9C4); }
+    .game-icon-wrap.red    { background: linear-gradient(135deg, #FFEBEE, #FFCDD2); }
 
     .game-card h3 {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 800;
       color: #333;
       margin-bottom: 4px;
     }
 
     .game-card p {
-      font-size: 14px;
-      color: #888;
-      line-height: 1.5;
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.4;
+      font-weight: 500;
     }
 
-    /* Features Section */
+    /* ===== BONUS SECTION ===== */
+    .bonus-section {
+      background: #fff;
+    }
+
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .bonus-card {
+      background: linear-gradient(135deg, #FFF9E6, #FFF3D4);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 2px solid #FFE082;
+      transition: transform 0.25s ease;
+    }
+
+    .bonus-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .bonus-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .bonus-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .bonus-card p {
+      font-size: 13px;
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    /* ===== FEATURES ===== */
     .features-section {
-      background: linear-gradient(135deg, #E8F5E9 0%, #FFF9E6 100%);
+      background: linear-gradient(180deg, #FFF9E6, #F3EDFF);
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
-    .feature {
+    .feature-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
       text-align: center;
-      padding: 24px 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      transition: transform 0.25s ease;
     }
 
-    .feature-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
+    .feature-card:hover {
+      transform: translateY(-4px);
     }
 
-    .feature h3 {
-      font-size: 16px;
-      font-weight: 700;
+    .feature-emoji {
+      font-size: 44px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      font-weight: 800;
       color: #333;
       margin-bottom: 6px;
     }
 
-    .feature p {
+    .feature-card p {
       font-size: 14px;
-      color: #777;
-    }
-
-    /* Stats Section */
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-      padding: 40px 0;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 36px;
-      font-weight: 800;
-      color: #9B7ED9;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: #888;
+      color: #999;
       font-weight: 500;
+      line-height: 1.5;
     }
 
-    /* Ages Section */
+    /* ===== AGES ===== */
     .ages-section {
       background: #fff;
     }
 
-    .ages-bar {
+    .ages-row {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .age-bubble {
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #9B7ED9 0%, #B89AE8 100%);
+      background: linear-gradient(145deg, #9B7ED9, #7B5CBF);
       color: #fff;
-      font-size: 20px;
-      font-weight: 800;
+      font-size: 24px;
+      font-weight: 900;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(155,126,217,0.3);
+      box-shadow: 0 6px 20px rgba(123,92,191,0.3);
+      transition: transform 0.25s ease;
     }
 
-    /* CTA Section */
-    .cta-section {
-      background: linear-gradient(135deg, #9B7ED9 0%, #B89AE8 100%);
-      padding: 60px 20px;
+    .age-bubble:hover {
+      transform: scale(1.15);
+    }
+
+    .ages-text {
       text-align: center;
+      margin-top: 24px;
+      font-size: 15px;
+      color: #999;
+      font-weight: 600;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(160deg, #7B5CBF 0%, #9B7ED9 40%, #B89AE8 100%);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .cta-section .circle-1 { width: 300px; height: 300px; top: -100px; left: -80px; }
+    .cta-section .circle-2 { width: 200px; height: 200px; bottom: -60px; right: -40px; }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
     }
 
     .cta-section h2 {
       color: #fff;
-      font-size: 28px;
-      font-weight: 800;
+      font-size: 34px;
+      font-weight: 900;
       margin-bottom: 12px;
     }
 
     .cta-section p {
-      color: rgba(255,255,255,0.85);
-      font-size: 16px;
-      margin-bottom: 28px;
+      color: rgba(255,255,255,0.88);
+      font-size: 18px;
+      margin-bottom: 32px;
+      font-weight: 500;
     }
 
     .cta-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       background: #FFD93D;
       color: #333;
       text-decoration: none;
-      font-size: 17px;
-      font-weight: 700;
-      padding: 14px 36px;
-      border-radius: 30px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 16px 40px;
+      border-radius: 32px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.25);
     }
 
-    /* Footer */
+    .cta-button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ===== FOOTER ===== */
     .footer {
       text-align: center;
-      padding: 32px 20px;
+      padding: 36px 20px;
+      background: #FFF9E6;
+    }
+
+    .footer-brand {
+      font-size: 15px;
+      font-weight: 700;
       color: #bbb;
-      font-size: 13px;
+      margin-bottom: 8px;
     }
 
-    .footer a {
+    .footer-brand span {
       color: #9B7ED9;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
     }
 
     .footer-links {
-      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
     }
 
-    /* Responsive */
+    .footer-links a {
+      color: #999;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #9B7ED9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .games-grid { grid-template-columns: repeat(2, 1fr); }
+      .bonus-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+
     @media (max-width: 480px) {
-      .hero h1 { font-size: 32px; }
-      .hero-tagline { font-size: 17px; }
-      .section-title { font-size: 24px; }
-      .stats { gap: 32px; }
+      .hero { padding: 50px 20px 80px; }
+      .hero h1 { font-size: 36px; }
+      .hero-tagline { font-size: 18px; }
+      .hero-logo img { width: 100px; height: 100px; }
+      .hero-character img { width: 140px; }
+      .stats-bar { flex-direction: row; flex-wrap: wrap; padding: 24px 16px; gap: 12px; margin: -30px 16px 0; }
+      .stat { min-width: 70px; }
       .stat-number { font-size: 28px; }
-      .hero-character img { width: 120px; }
+      .section { padding: 50px 0; }
+      .section-title { font-size: 26px; }
+      .games-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .bonus-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .cta-section h2 { font-size: 26px; }
+      .cta-button { font-size: 16px; padding: 14px 32px; }
+      .age-bubble { width: 56px; height: 56px; font-size: 20px; }
     }
   </style>
 </head>
@@ -327,38 +520,47 @@
 
   <!-- Hero -->
   <div class="hero">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
     <div class="hero-content">
       <div class="hero-logo"><img src="numi-logo.png" alt="Numi Logo"></div>
       <h1>Numi</h1>
-      <p class="hero-tagline">Kids Math Games</p>
+      <p class="hero-tagline">Fun math games for kids</p>
       <div class="hero-badges">
-        <span class="badge">Ages 4-10</span>
-        <span class="badge">100% Free</span>
-        <span class="badge">No Ads</span>
-        <span class="badge">Offline</span>
+        <span class="badge"><span class="badge-icon">&#x1F476;</span> Ages 4-10</span>
+        <span class="badge"><span class="badge-icon">&#x2764;</span> 100% Free</span>
+        <span class="badge"><span class="badge-icon">&#x1F6AB;</span> No Ads</span>
+        <span class="badge"><span class="badge-icon">&#x2708;</span> Works Offline</span>
       </div>
       <div class="hero-character">
         <img src="numi-character.png" alt="Numi Character">
       </div>
     </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,30 L1440,60 L0,60 Z" fill="#FFF9E6"/>
+      </svg>
+    </div>
   </div>
 
-  <!-- Stats -->
+  <!-- Stats Bar -->
   <div class="container">
-    <div class="stats">
-      <div>
+    <div class="stats-bar">
+      <div class="stat">
         <div class="stat-number">1,100+</div>
         <div class="stat-label">Levels</div>
       </div>
-      <div>
+      <div class="stat">
         <div class="stat-number">8</div>
         <div class="stat-label">Game Modes</div>
       </div>
-      <div>
+      <div class="stat">
         <div class="stat-number">4</div>
         <div class="stat-label">Bonus Games</div>
       </div>
-      <div>
+      <div class="stat">
         <div class="stat-number">7</div>
         <div class="stat-label">Age Groups</div>
       </div>
@@ -368,78 +570,80 @@
   <!-- Game Modes -->
   <div class="section">
     <div class="container">
-      <h2 class="section-title">Game Modes</h2>
+      <div class="section-label">Core Games</div>
+      <h2 class="section-title">8 Ways to Learn Math</h2>
       <p class="section-subtitle">From counting basics to fractions and beyond</p>
       <div class="games-grid">
         <div class="game-card">
-          <div class="game-icon">&#x2795;</div>
+          <div class="game-icon-wrap purple">&#x2795;</div>
           <h3>Addition</h3>
           <p>Build the foundation for all math skills</p>
         </div>
         <div class="game-card">
-          <div class="game-icon">&#x2796;</div>
+          <div class="game-icon-wrap blue">&#x2796;</div>
           <h3>Subtraction</h3>
           <p>Practice taking away and finding differences</p>
         </div>
         <div class="game-card">
-          <div class="game-icon">&#x2716;</div>
+          <div class="game-icon-wrap green">&#x2716;</div>
           <h3>Multiplication</h3>
           <p>Discover how groups of numbers work</p>
         </div>
         <div class="game-card">
-          <div class="game-icon">&#x2797;</div>
+          <div class="game-icon-wrap orange">&#x2797;</div>
           <h3>Division</h3>
           <p>Split numbers into equal groups</p>
         </div>
         <div class="game-card">
-          <div class="game-icon">&#x00BD;</div>
+          <div class="game-icon-wrap pink">&#xBD;</div>
           <h3>Fractions</h3>
           <p>Understand parts of a whole</p>
         </div>
         <div class="game-card">
-          <div class="game-icon">&#x271E;</div>
+          <div class="game-icon-wrap teal">&#x271E;</div>
           <h3>Math Cross</h3>
           <p>Crossword-style math puzzles</p>
         </div>
         <div class="game-card">
-          <div class="game-icon">&#x1F5BC;</div>
+          <div class="game-icon-wrap yellow">&#x1F5BC;</div>
           <h3>Picture Math</h3>
-          <p>Find hidden numbers in picture equations</p>
+          <p>Find hidden numbers in equations</p>
         </div>
         <div class="game-card">
-          <div class="game-icon">&#x2276;</div>
+          <div class="game-icon-wrap red">&#x2276;</div>
           <h3>Number Compare</h3>
-          <p>Greater than, less than, and equal</p>
+          <p>Greater than, less than, equal</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Bonus Games -->
-  <div class="section" style="padding-top: 0;">
+  <div class="section bonus-section">
     <div class="container">
+      <div class="section-label">Unlock as you play</div>
       <h2 class="section-title">Bonus Activities</h2>
-      <p class="section-subtitle">Fun challenges to unlock as you progress</p>
-      <div class="games-grid">
-        <div class="game-card">
-          <div class="game-icon">&#x2160;</div>
+      <p class="section-subtitle">Fun challenges that reward progress</p>
+      <div class="bonus-grid">
+        <div class="bonus-card">
+          <div class="bonus-icon">&#x1F3DB;</div>
           <h3>Roman Numerals</h3>
           <p>Learn I, V, X, L, C, D, M</p>
         </div>
-        <div class="game-card">
-          <div class="game-icon">&#x1F570;</div>
-          <h3>Time</h3>
-          <p>Read analog and digital clocks</p>
+        <div class="bonus-card">
+          <div class="bonus-icon">&#x1F570;</div>
+          <h3>Tell Time</h3>
+          <p>Read analog &amp; digital clocks</p>
         </div>
-        <div class="game-card">
-          <div class="game-icon">&#x1F523;</div>
+        <div class="bonus-card">
+          <div class="bonus-icon">&#x1F52E;</div>
           <h3>Patterns</h3>
-          <p>Complete shape and number sequences</p>
+          <p>Complete shape &amp; number sequences</p>
         </div>
-        <div class="game-card">
-          <div class="game-icon">&#x1F0CF;</div>
+        <div class="bonus-card">
+          <div class="bonus-icon">&#x1F0CF;</div>
           <h3>Memory Match</h3>
-          <p>Find matching pairs of math cards</p>
+          <p>Find matching math card pairs</p>
         </div>
       </div>
     </div>
@@ -448,38 +652,39 @@
   <!-- Features -->
   <div class="section features-section">
     <div class="container">
-      <h2 class="section-title">Built for Kids</h2>
-      <p class="section-subtitle">Safe, fun, and designed with care</p>
+      <div class="section-label">Why parents love Numi</div>
+      <h2 class="section-title">Safe, Fun &amp; Built for Kids</h2>
+      <p class="section-subtitle">Designed with care for young learners</p>
       <div class="features-grid">
-        <div class="feature">
-          <div class="feature-icon">&#x1F6E1;</div>
-          <h3>100% Safe</h3>
-          <p>No data collection, no accounts, no tracking</p>
+        <div class="feature-card">
+          <div class="feature-emoji">&#x1F6E1;</div>
+          <h3>100% Private</h3>
+          <p>No data collection, no accounts, no tracking whatsoever</p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">&#x1F4F5;</div>
+        <div class="feature-card">
+          <div class="feature-emoji">&#x1F4F5;</div>
           <h3>Works Offline</h3>
-          <p>No internet needed, play anywhere</p>
+          <p>No internet needed — play anywhere, anytime</p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">&#x1F6AB;</div>
-          <h3>No Ads</h3>
-          <p>Zero ads, zero in-app purchases</p>
+        <div class="feature-card">
+          <div class="feature-emoji">&#x1F6AB;</div>
+          <h3>Zero Ads</h3>
+          <p>No ads and no in-app purchases, ever</p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">&#x2B50;</div>
+        <div class="feature-card">
+          <div class="feature-emoji">&#x2B50;</div>
           <h3>Star Rewards</h3>
           <p>3-star rating system to encourage mastery</p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">&#x1F4C8;</div>
+        <div class="feature-card">
+          <div class="feature-emoji">&#x1F4C8;</div>
           <h3>Adaptive Difficulty</h3>
-          <p>Grows with your child's abilities</p>
+          <p>Content grows with your child's abilities</p>
         </div>
-        <div class="feature">
-          <div class="feature-icon">&#x1F476;</div>
+        <div class="feature-card">
+          <div class="feature-emoji">&#x1F49B;</div>
           <h3>Gentle Feedback</h3>
-          <p>Encouraging, never harsh or stressful</p>
+          <p>Encouraging and supportive, never harsh</p>
         </div>
       </div>
     </div>
@@ -488,9 +693,10 @@
   <!-- Ages -->
   <div class="section ages-section">
     <div class="container">
+      <div class="section-label">Grows with your child</div>
       <h2 class="section-title">Ages 4 to 10</h2>
       <p class="section-subtitle">Adaptive content for every stage of learning</p>
-      <div class="ages-bar">
+      <div class="ages-row">
         <div class="age-bubble">4</div>
         <div class="age-bubble">5</div>
         <div class="age-bubble">6</div>
@@ -499,19 +705,27 @@
         <div class="age-bubble">9</div>
         <div class="age-bubble">10</div>
       </div>
+      <p class="ages-text">Each age unlocks new challenges and higher difficulty</p>
     </div>
   </div>
 
   <!-- CTA -->
   <div class="cta-section">
-    <h2>Ready to make math fun?</h2>
-    <p>Download Numi and let your child start learning through play.</p>
-    <a href="#" class="cta-button">&#x25B6; Get Numi on Google Play</a>
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="cta-content">
+      <h2>Ready to make math fun?</h2>
+      <p>Download Numi and let your child start learning through play.</p>
+      <a href="#" class="cta-button">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.38l2.545 1.463c.478.275.478.964 0 1.24l-2.545 1.462-2.532-2.532 2.532-2.633zM5.864 2.658L16.8 8.99l-2.302 2.302-8.635-8.635z"/></svg>
+        Get it on Google Play
+      </a>
+    </div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
-    <div>Made with care for young learners</div>
+    <div class="footer-brand">Made with &#x2764; by <span>Numi</span></div>
     <div class="footer-links">
       <a href="https://vasi-rus.github.io/numi-privacy/">Privacy Policy</a>
     </div>
