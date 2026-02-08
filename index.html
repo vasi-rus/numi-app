@@ -570,6 +570,26 @@
       height: 24px;
     }
 
+    /* ===== VIDEO ===== */
+    .video-section {
+      background: linear-gradient(180deg, #FFF9E6, #F3EDFF);
+      padding: 60px 0;
+    }
+
+    .video-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(155, 126, 217, 0.25);
+      background: #000;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      display: block;
+    }
+
     /* ===== FOOTER ===== */
     .footer {
       text-align: center;
@@ -674,6 +694,21 @@
       <div class="stat">
         <div class="stat-number">7</div>
         <div class="stat-label">Age Groups</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Demo -->
+  <div class="section video-section">
+    <div class="container">
+      <div class="section-label">See it in action</div>
+      <h2 class="section-title">Watch Numi</h2>
+      <p class="section-subtitle">A quick peek at the fun math adventures</p>
+      <div class="video-wrapper">
+        <video controls playsinline poster="numi-logo.png">
+          <source src="numi-recording.webm" type="video/webm">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </div>
